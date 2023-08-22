@@ -1,0 +1,26 @@
+.app {
+  display: flex;
+  flex-direction: column;
+}
+.editor-wrapper {
+  border: 1px dotted red;
+}
+.message-toolbar {
+  border-bottom: 1px dotted red;
+  margin-bottom: 0px;
+  padding: 6px 5px;
+  overflow: auto;
+}
+.message-editor {
+  height: 50vh;
+  font-size: 16px;
+  padding: 0px 10px;
+}
+
+.html-output {
+  display: none;
+}
+input:focus {
+  outline: none; /* Remove default focus outline */
+  border: 1px solid transparent; /* Hide the border on focus */
+}

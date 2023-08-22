@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup";
 import LogIn from "./components/Auth/Login";
 import ErrorAlert from "./UI/ErrorAlert/ErrorAlert"
+import SendMail from "./components/SendMail/SendMail";
 function App() {
   const [ErrorAl, SetErrorAl] = useState(false);
   const [Errormessage, SetErrorMessage] = useState("");
@@ -61,6 +62,21 @@ function App() {
             )}
               <Header></Header>
               <LogIn  error={ErrorAlertHandler}></LogIn>
+            </>
+          }
+        />
+        <Route
+          path="/compose"
+          element={
+            <>{ErrorAl && (
+              <ErrorAlert
+                ErrorHead={ErrorHead}
+                message={Errormessage}
+                onHide={ErrorAlertHandler}
+              ></ErrorAlert>
+            )}
+              <Header></Header>
+              <SendMail></SendMail>
             </>
           }
         />
