@@ -1,0 +1,9 @@
+div a{
+    text-decoration: none;
+    color: rgb(199, 61, 61);
+    margin-right:15px;
+    margin-left:25px;
+}
+div a.active{
+    color: rgb(195, 44, 201);
+}
