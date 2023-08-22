@@ -9,13 +9,14 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup";
 import LogIn from "./components/Auth/Login";
-import ErrorAlert from "./UI/ErrorAlert/ErrorAlert"
+import ErrorAlert from "./UI/ErrorAlert/ErrorAlert";
 import SendMail from "./components/SendMail/SendMail";
+import MainPageHeader from "./components/Header/MainPageHeader";
 function App() {
   const [ErrorAl, SetErrorAl] = useState(false);
   const [Errormessage, SetErrorMessage] = useState("");
   const [ErrorHead, SetErrorHead] = useState("");
-  function ErrorAlertHandler(head,error ) {
+  function ErrorAlertHandler(head, error) {
     if (ErrorAl === false) {
       SetErrorMessage(error);
       SetErrorHead(head);
@@ -38,43 +39,47 @@ function App() {
         <Route
           path="/signup"
           element={
-            <>{ErrorAl && (
-              <ErrorAlert
-                ErrorHead={ErrorHead}
-                message={Errormessage}
-                onHide={ErrorAlertHandler}
-              ></ErrorAlert>
-            )}
+            <>
+              {ErrorAl && (
+                <ErrorAlert
+                  ErrorHead={ErrorHead}
+                  message={Errormessage}
+                  onHide={ErrorAlertHandler}
+                ></ErrorAlert>
+              )}
               <Header></Header>
-              <Signup  error={ErrorAlertHandler}></Signup>
+              <Signup error={ErrorAlertHandler}></Signup>
             </>
           }
         />
         <Route
           path="/login"
           element={
-            <>{ErrorAl && (
-              <ErrorAlert
-                ErrorHead={ErrorHead}
-                message={Errormessage}
-                onHide={ErrorAlertHandler}
-              ></ErrorAlert>
-            )}
+            <>
+              {ErrorAl && (
+                <ErrorAlert
+                  ErrorHead={ErrorHead}
+                  message={Errormessage}
+                  onHide={ErrorAlertHandler}
+                ></ErrorAlert>
+              )}
               <Header></Header>
-              <LogIn  error={ErrorAlertHandler}></LogIn>
+              <LogIn error={ErrorAlertHandler}></LogIn>
+            </>
+          }
+        />
+        <Route
+          path="/loggedin"
+          element={
+            <>
+              <MainPageHeader></MainPageHeader>
             </>
           }
         />
         <Route
           path="/compose"
           element={
-            <>{ErrorAl && (
-              <ErrorAlert
-                ErrorHead={ErrorHead}
-                message={Errormessage}
-                onHide={ErrorAlertHandler}
-              ></ErrorAlert>
-            )}
+            <>
               <Header></Header>
               <SendMail></SendMail>
             </>

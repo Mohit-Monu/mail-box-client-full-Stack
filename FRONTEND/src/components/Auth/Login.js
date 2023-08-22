@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios"
 function LogIn(props) {
+  const navigate=useNavigate()
   const EmailRef = useRef();
   const PasswordRef = useRef();
   async function LoginHandler(e) {
@@ -23,7 +24,7 @@ function LogIn(props) {
       };
       const res = await axios(config);
       localStorage.setItem("token", res.data.token);
-      // navigate("/expense");
+      navigate("/loggedin");
     } catch (err) {
       props.error("Opps Something Went Wrong",err.response.data.message );
     }
