@@ -1,0 +1,14 @@
+.divv a{
+    text-decoration: none;
+    color: rgb(199, 61, 61);
+    margin-right:15px;
+    margin-left:25px;
+    margin-bottom: 5px;
+}
+.divv a.active{
+   background-color: #a2d2ff;
+   border-radius: 20px;
+   overflow: hidden;
+   margin-bottom: 5px;
+    
+}

@@ -12,6 +12,10 @@ import LogIn from "./components/Auth/Login";
 import ErrorAlert from "./UI/ErrorAlert/ErrorAlert";
 import SendMail from "./components/SendMail/SendMail";
 import MainPageHeader from "./components/Header/MainPageHeader";
+import Inbox from "./components/MainPage/Inbox";
+import Unread from "./components/MainPage/Unread";
+import Send from "./components/MainPage/Send";
+import ShowMail from "./components/ShowMail/ShowMail";
 function App() {
   const [ErrorAl, SetErrorAl] = useState(false);
   const [Errormessage, SetErrorMessage] = useState("");
@@ -73,6 +77,34 @@ function App() {
           element={
             <>
               <MainPageHeader></MainPageHeader>
+              <Inbox></Inbox>
+            </>
+          }
+        />
+        <Route
+          path="/unread"
+          element={
+            <>
+              <MainPageHeader></MainPageHeader>
+              <Unread></Unread>
+            </>
+          }
+        />
+        <Route
+          path="/sent"
+          element={
+            <>
+              <MainPageHeader></MainPageHeader>
+              <Send></Send>
+            </>
+          }
+        />
+        <Route
+          path="/showmail/:maildid"
+          element={
+            <>
+              <MainPageHeader></MainPageHeader>
+              <ShowMail></ShowMail>
             </>
           }
         />
@@ -80,8 +112,15 @@ function App() {
           path="/compose"
           element={
             <>
+              {ErrorAl && (
+                <ErrorAlert
+                  ErrorHead={ErrorHead}
+                  message={Errormessage}
+                  onHide={ErrorAlertHandler}
+                ></ErrorAlert>
+              )}
               <Header></Header>
-              <SendMail></SendMail>
+              <SendMail error={ErrorAlertHandler}></SendMail>
             </>
           }
         />

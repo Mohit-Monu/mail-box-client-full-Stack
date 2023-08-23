@@ -1,12 +1,10 @@
 import Button from "react-bootstrap/Button";
 import "./Header.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 function Header() {
-  const navigate = useNavigate();
-  function LogoutHandler() {}
   return (
     <div>
       <Navbar expand="lg" className={`bg-${"light"}`} variant={"light"}>
@@ -31,18 +29,6 @@ function Header() {
                 variant="outline-info"
               >
                 Log-In / Sign Up
-              </Button>
-            </NavLink>
-          </div>
-
-          <div>
-            <NavLink to="/">
-              <Button
-                style={{ display: "flex", float: "left", marginRight: "5px" }}
-                variant="outline-info"
-                onClick={LogoutHandler}
-              >
-                Log-Out
               </Button>
             </NavLink>
           </div>
