@@ -7,11 +7,18 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Arrow from "./arrow.json";
 import Lottie from "lottie-react";
 import "./HeaderMain.css";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth";
 function MainPageHeader() {
   const navigate = useNavigate()
+  const sentno=useSelector(state=>state.mailsno.sent)
+  const inboxno=useSelector(state=>state.mailsno.inbox)
+  const unreadno=useSelector(state=>state.mailsno.unread)
+  const dispatch=useDispatch()
 
   function LogoutHandler(){
     localStorage.removeItem("token")
+    dispatch(authActions.logout())
     navigate("/")
   }
 
@@ -75,7 +82,7 @@ function MainPageHeader() {
                       }}
                     >
                       <h5>Inbox</h5>
-                      <h5>999+</h5>
+                      <h5>{inboxno}</h5>
                     </div>
                   </NavLink>
                   <NavLink to="/unread">
@@ -90,7 +97,7 @@ function MainPageHeader() {
                       }}
                     >
                       <h5>Unread</h5>
-                      <h5>999+</h5>
+                      <h5>{unreadno}</h5>
                     </div>
                   </NavLink>
                   <NavLink to="/sent">
@@ -105,7 +112,7 @@ function MainPageHeader() {
                       }}
                     >
                       <h5>Sent</h5>
-                      <h5>999+</h5>
+                      <h5>{sentno}</h5>
                     </div>
                   </NavLink>
                   <NavLink to="/compose" style={{ marginTop: "20px" }}>

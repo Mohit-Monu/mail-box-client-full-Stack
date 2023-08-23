@@ -7,6 +7,8 @@ import "./SendMail.css";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { mailnoAction } from "../../store/mailsno";
 function SendMail(props) {
   const RecieverEmailRef = useRef();
   const RecieverEmailSubject = useRef();
@@ -19,6 +21,7 @@ function SendMail(props) {
     [editorState]
   );
   const navigate = useNavigate();
+  const dispatch=useDispatch()
 
   async function SendMailHandler() {
     if (RecieverEmailRef.current.value === "") {
@@ -59,6 +62,7 @@ function SendMail(props) {
       const res = await axios(config);
       console.log(res)
       await props.error("Email sent",`${res.data.message}`)
+      dispatch(mailnoAction.Setsent())
       setTimeout(()=>{
         navigate("/loggedin")
       },2000)

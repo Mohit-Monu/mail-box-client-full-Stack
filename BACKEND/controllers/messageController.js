@@ -33,7 +33,7 @@ async function GetMails(req, res) {
   try {
     const senderEmail = req.user.email;
     const result = await MESSAGES.findAll({
-      where: { reciver_email: senderEmail },
+      where: { reciver_email: senderEmail },order: [["id", "DESC"]]
     });
     res.status(200).json({ message: result });
   } catch (err) {
@@ -46,7 +46,7 @@ async function GetSentMails(req, res) {
   try {
     const senderEmail = req.user.email;
     const result = await MESSAGES.findAll({
-      where: { senders_email: senderEmail },
+      where: { senders_email: senderEmail },order: [["id", "DESC"]]
     });
     res.status(200).json({ message: result });
   } catch (err) {
@@ -60,7 +60,7 @@ async function OpenMail(req, res) {
   try {
     const id=req.params.id
     const UserEmail = req.user.email;
-    const result = await MESSAGES.findOne({where:{id:id}},{transaction:t});
+    const result = await MESSAGES.findOne({where:{id:id}});
     let from=""
     let to=""
     if(UserEmail===result.senders_email){
@@ -71,7 +71,7 @@ async function OpenMail(req, res) {
       to=UserEmail
     }
     if(result.read===false && from != UserEmail){
-      await result.update({read:true})
+      await result.update({read:true},{transaction:t})
     }
     await t.commit()
     res.status(200).json({ message: {result,from,to} });
@@ -82,4 +82,18 @@ async function OpenMail(req, res) {
       .json({ message: "Something went wrong please retry after sometime" });
   }
 }
-module.exports = { SendMail, GetMails, GetSentMails, OpenMail };
+async function GetAllNumbers(req,res){
+  try {
+    const UserEmail = req.user.email;
+    const sentmailno = await MESSAGES.count({where:{senders_email:UserEmail}});
+    const receivedmailno = await MESSAGES.count({where:{reciver_email:UserEmail}});
+    const unreadmailno=await MESSAGES.count({where:{read:false,reciver_email:UserEmail}})
+    res.status(200).json({ message: {sentmailno,receivedmailno,unreadmailno} });
+  } catch (err) {
+    console.log(err)
+    res
+      .status(500)
+      .json({ message: "Something went wrong please retry after sometime" });
+  }
+}
+module.exports = { SendMail, GetMails, GetSentMails, OpenMail,GetAllNumbers };

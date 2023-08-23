@@ -5,11 +5,11 @@ import { Image } from "react-bootstrap";
 
 function UnreadList(props) {
   return (
-    <Row style={{ borderBottom: "1px solid red", height: "32px",cursor:"pointer" }} onClick={()=>{props.OpenEmail(props.id)}}>
-      <Col fluid sm={3} style={{ height: "30px" }}>
+    <Row style={{ borderBottom: "1px solid red", height: "40px",cursor:"pointer",fontSize:"20px",justifyContent:"evenly",boxShadow:"0px 4px 6px rgba(0, 0, 0, 0.1)"  }} onClick={()=>{props.OpenEmail(props.id)}}>
+      <Col  sm={3} style={{ height: "30px" }}>
         <Row>
           <Col sm={2}>
-            <Image fluid src={BlueDot} style={{ height: "17px" }}></Image>
+            <Image  src={BlueDot} style={{ height: "17px" }}></Image>
           </Col>
           <Col sm={10} style={{ overflow: "hidden" }}>
             <span>
