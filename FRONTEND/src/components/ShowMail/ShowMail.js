@@ -85,6 +85,9 @@ function ShowMail(props) {
               justifyContent: "space-between",
             }}
           >
+            <Button variant="primary" onClick={()=>{navigate("/loggedin")}}>
+              Back
+            </Button>
             <h1 className="text-center" style={{ flex: 1, margin: 0 }}>
               Mail
             </h1>
