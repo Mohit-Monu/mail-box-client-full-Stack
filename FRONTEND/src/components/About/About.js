@@ -1,7 +1,5 @@
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-
+import Aboutpic from "./AboutPic.jpg"
 function About() {
   return (
     <Card className="text-center">
@@ -11,7 +9,7 @@ function About() {
         <Card.Img
           variant="top"
           style={{ height: "300px", width: "300px" }}
-          src="https://drive.google.com/uc?id=1EXNMSTRNINuBVwS5r07nx77Q5C45ipLP"
+          src= {Aboutpic}
         />
         <Card.Text className="mt-4">
           Est consectetur laboris dolor laborum qui eiusmod reprehenderit. Esse
@@ -56,14 +54,6 @@ function About() {
           consequat dolore quis do commodo consectetur id voluptate. Labore
           officia elit laboris incididunt velit laboris eu occaecat.
         </Card.Text>
-        <Button variant="primary">
-          <Link
-            to="/store"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Store
-          </Link>
-        </Button>
       </Card.Body>
     </Card>
   );

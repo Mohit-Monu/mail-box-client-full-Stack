@@ -19,6 +19,8 @@ import ShowMail from "./components/ShowMail/ShowMail";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { mailnoAction } from "./store/mailsno";
+import About from "./components/About/About"
+
 function App() {
   const [ErrorAl, SetErrorAl] = useState(false);
   const [Errormessage, SetErrorMessage] = useState("");
@@ -69,6 +71,15 @@ function App() {
           element={
             <>
               <Header></Header>
+            </>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <>
+              <Header></Header>
+              <About></About>
             </>
           }
         />

@@ -4,7 +4,12 @@ import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Lottie from "lottie-react";
+import Logout from "./logout.json"
+import { useState } from "react";
 function Header() {
+  const [logouthover, setlogouthover] = useState(false);
+
   return (
     <div>
       <Navbar expand="lg" className={`bg-${"light"}`} variant={"light"}>
@@ -19,15 +24,30 @@ function Header() {
             >
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">About us</NavLink>
-              <NavLink to="/products">Products</NavLink>
             </Nav>
           </Navbar.Collapse>
           <div>
+              
             <NavLink to="/signup">
               <Button
-                style={{ display: "flex", float: "left", marginRight: "5px" }}
                 variant="outline-info"
+                className="d-flex align-items-center justify-content-between"
+                onMouseEnter={() => {
+                  setlogouthover(true);
+                }}
+                onMouseLeave={() => {
+                  setlogouthover(false);
+                }}
               >
+                <div
+                  style={{ height: "30px", float: "left", marginRight: "10px" }}
+                >
+                  <Lottie
+                    style={{ height: "25px" }}
+                    loop={logouthover}
+                    animationData={Logout}
+                  ></Lottie>
+                </div>
                 Log-In / Sign Up
               </Button>
             </NavLink>
