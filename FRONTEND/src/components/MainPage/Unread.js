@@ -25,12 +25,12 @@ function Unread() {
     GetData();
   }, []);
   function OpenEmailHandler(id){
-    navigate(`/showmail/${id}`)
+    navigate(`/showmail/${id}/unread`)
   }
   return (
     <Container
-      fluid
-      style={{ border: "2px dotted red", height: "85vh", margin: "10px" }}
+      fluid className="p-2"
+      style={{ border: "2px dotted red", minHeight: "85vh",width:"90%" }}
     >
       <h3 className="text-center">Unread</h3>
       <hr />

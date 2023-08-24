@@ -135,11 +135,17 @@ function App() {
           }
         />
         <Route
-          path="/showmail/:maildid"
+          path="/showmail/:maildid/:location"
           element={IsLoggedIn ? (
-            <>
+            <>{ErrorAl && (
+              <ErrorAlert
+                ErrorHead={ErrorHead}
+                message={Errormessage}
+                onHide={ErrorAlertHandler}
+              ></ErrorAlert>
+            )}
             <MainPageHeader></MainPageHeader>
-              <ShowMail></ShowMail>
+              <ShowMail error={ErrorAlertHandler}></ShowMail>
             </>
           ):(<Navigate to="/login"></Navigate>)
           }

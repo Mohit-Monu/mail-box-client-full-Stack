@@ -5,7 +5,7 @@ import { Image } from "react-bootstrap";
 
 function SendList(props) {
   return (
-    <Row style={{ borderBottom: "1px solid red", height: "40px",cursor:"pointer",fontSize:"20px",justifyContent:"evenly",boxShadow:"0px 4px 6px rgba(0, 0, 0, 0.1)" }} onClick={()=>{props.OpenEmail(props.id)}}>
+    <Row className="m-1"  style={{ borderBottom: "1px solid red", height: "40px",cursor:"pointer",fontSize:"20px",justifyContent:"evenly",boxShadow:"0px 4px 6px rgba(0, 0, 0, 0.1)" }} onClick={()=>{props.OpenEmail(props.id)}}>
       <Col  sm={3} style={{ height: "30px" }}>
         <Row>
           <Col sm={2}>

@@ -61,7 +61,7 @@ function SendMail(props) {
       };
       const res = await axios(config);
       console.log(res)
-      await props.error("Email sent",`${res.data.message}`)
+      props.error("Email sent",`${res.data.message}`)
       dispatch(mailnoAction.Setsent())
       setTimeout(()=>{
         navigate("/loggedin")

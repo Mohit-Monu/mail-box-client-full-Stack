@@ -26,12 +26,12 @@ function Inbox() {
     GetData()
   },[])
   function OpenEmailHandler(id){
-    navigate(`/showmail/${id}`)
+    navigate(`/showmail/${id}/inbox`)
   }
   return (
     <Container
-      fluid
-      style={{ border: "2px dotted red", height: "85vh", margin: "10px" }}
+      fluid className="p-2"
+      style={{ border: "2px dotted red", minHeight: "85vh",width:"90%"}}
     >
       <h3 className="text-center">Inbox</h3>
       <hr/>

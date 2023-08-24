@@ -9,6 +9,7 @@ router.get('/user/getInbox',userAuthentication.authenticate,messageController.Ge
 router.get('/user/getSent',userAuthentication.authenticate,messageController.GetSentMails);
 router.get('/openmail/:id',userAuthentication.authenticate,messageController.OpenMail);
 router.get('/user/getallNo',userAuthentication.authenticate,messageController.GetAllNumbers);
+router.delete("/user/:delid",userAuthentication.authenticate,messageController.DelMsg);
 
 
 module.exports=router;

@@ -70,11 +70,13 @@ async function OpenMail(req, res) {
       from=result.senders_email
       to=UserEmail
     }
+    let updateunread=false
     if(result.read===false && from != UserEmail){
       await result.update({read:true},{transaction:t})
+      updateunread=true
     }
     await t.commit()
-    res.status(200).json({ message: {result,from,to} });
+    res.status(200).json({ message: {result,from,to,updateunread} });
   } catch (err) {
     await t.rollback()
     res
@@ -90,10 +92,23 @@ async function GetAllNumbers(req,res){
     const unreadmailno=await MESSAGES.count({where:{read:false,reciver_email:UserEmail}})
     res.status(200).json({ message: {sentmailno,receivedmailno,unreadmailno} });
   } catch (err) {
-    console.log(err)
     res
       .status(500)
       .json({ message: "Something went wrong please retry after sometime" });
   }
 }
-module.exports = { SendMail, GetMails, GetSentMails, OpenMail,GetAllNumbers };
+async function DelMsg(req,res){
+  const t = await sequelize.transaction();
+  try{
+    await MESSAGES.destroy({where:{id:req.params.delid}},{transaction:t})
+    await t.commit()
+    res.status(200).json({message:"Email deleted successfully"})
+  }catch(err){
+    await t.rollback()
+    res
+      .status(500)
+      .json({ message: "Something went wrong please retry after sometime" });
+    
+  }
+}
+module.exports = { SendMail, GetMails, GetSentMails, OpenMail,GetAllNumbers,DelMsg };
